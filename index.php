@@ -32,13 +32,13 @@
 			<div class="half-width">
 				<input <?php if($deposit!='' && (!is_numeric($deposit) || $deposit<=0)) {
 					$deposit = str_replace(",",".",$deposit);
-				} ?> type='text' name="deposit" placeholder='1550000' value="<?= $deposit?>">
+				} ?> type='text' name="deposit" placeholder='1550000' value="<?= htmlspecialchars($deposit)?>">
 			</div>
 			<div class="half-width">
 				<label for='period'>Срок хранения денежных средств в днях:</label>
 			</div>
 			<div class="half-width">
-				<input type='text' name="period" placeholder='365' value="<?= $period?>">
+				<input type='text' name="period" placeholder='365' value="<?= htmlspecialchars($period)?>">
 			</div>
 			<div class="half-width">
 				<label for='rate'>Годовая процентная ставка в процентах:</label>
@@ -46,7 +46,7 @@
 			<div class="half-width">
 				<input <?php if($rate!='' && (!is_numeric($rate) || $rate<=0)) {
 					$rate = str_replace(",",".",$rate);
-				} ?> type='text' name="rate" placeholder='7.5' value="<?= $rate?>">
+				} ?> type='text' name="rate" placeholder='7.5' value="<?= htmlspecialchars($rate)?>">
 			</div>
 		</fieldset>
 		<input type="submit" value="Рассчитать сумму">
