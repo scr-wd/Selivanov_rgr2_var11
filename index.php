@@ -8,6 +8,7 @@
 			$deposit = "";
 			$period = "";
 			$rate = "";
+			$rate1 = "";
 			if (isset($_GET['deposit'])) {
 				$deposit = $_GET['deposit'];
 			}
@@ -45,15 +46,15 @@
 			</div>
 			<div class="half-width">
 				<input <?php if($rate!='' && (!is_numeric($rate) || $rate<=0)) {
-					$rate = str_replace(",",".",$rate);
-				} ?> type='text' name="rate" placeholder='7.5' value="<?= htmlspecialchars($rate)?>">
+					$rate1 = str_replace(",",".",$rate);
+				} ?> type='text' name="rate" placeholder='7,5' value="<?= htmlspecialchars($rate)?>">
 			</div>
 		</fieldset>
 		<input type="submit" value="Рассчитать сумму">
 		</form>
 		
 		<?php
-			if ($deposit != '' && $period != '' && $rate != '') 
+			if ($deposit != '' && $period != '' && $rate1 != '') 
 			{
 					if (!is_numeric($deposit) || $deposit<=0) {
 						$result = "Сумма депозита была введена неверно. Повторите ввод опираясь на подсказку в поле ввода.";
@@ -61,12 +62,12 @@
 					elseif (!is_numeric($period) || $period<=0){
 						$result = "Срок хранения депозита был введен неверно. Повторите ввод опираясь на подсказку в поле ввода.";
 					}
-					elseif (!is_numeric($rate) || $rate<=0 || $rate>=30){
+					elseif (!is_numeric($rate1) || $rate1<=0 || $rate1>=30){
 						$result = "Процентная ставка депозита была введена неверно. Повторите ввод опираясь на подсказку в поле ввода.";
 					}
 					else
 					{
-						$result = $deposit + ($deposit * ($period / 365) * ($rate / 100));
+						$result = $deposit + ($deposit * ($period / 365) * ($rate1 / 100));
 						$result = number_format($result, 2, ',', ' ');
 						$result = htmlspecialchars($result) . " руб.";
 					}
@@ -79,7 +80,7 @@
 			{
 				$result = "Введите, пожалуйста, срок хранения депозита.";
 			}
-			elseif ($rate != '')
+			elseif ($rate1 != '')
 			{
 				$result = "Введите, пожалуйста, процентную ставку по депозиту.";
 			};
